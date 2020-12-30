@@ -28,11 +28,12 @@ unsigned long timing;                         // Переменная для х�
 
 int index1, index2, index3, index4, index5, index6, dengerous_UNO=3;
 String temperatura_UNO="23",humory_UNO ="50",red_UNO="100",blue_UNO="70",dengerous_UNO_str="3";
+
 void setup(void){
   Serial.begin(115200);
   Serial.println("start");
   pinMode(2, OUTPUT);
-digitalWrite(2, HIGH);
+  digitalWrite(2, HIGH);
 
   WiFi.begin(ssid, password);                 //Connect to your WiFi router
   //Serial.println(""); 
@@ -63,23 +64,30 @@ digitalWrite(2, HIGH);
 //==============================================================
 //                                            LOOP
 //==============================================================
+
 void loop(void){
   server.handleClient();                      //Handle client requests
 }
+
 void test1(){
   Serial.println("1");
-  }
- void test2(){
+}
+  
+void test2(){
   Serial.println("2");
-  }
-  void test3(){
-  Serial.println("3");}
-  void tes41(){
+}
+
+void test3(){
+  Serial.println("3");
+}
+
+void tes41(){
   Serial.println("4");
-  }
+}
+
 void handleRoot() {
- String s = MAIN_page;                        //Read HTML contents
- server.send(200, "text/html", s);            //Отправить веб-страницу  Send web page
+  String s = MAIN_page;                        //Read HTML contents
+  server.send(200, "text/html", s);            //Отправить веб-страницу  Send web page
 }
  ///------------------------------------------ОТПРАВКА НА ESP------------------------------------------------------
  
