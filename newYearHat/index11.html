@@ -221,10 +221,13 @@ body {
 
   
 <div id="f3" style="display: inline-block;">
-  <div><button type="button" onclick="sendData2(1)" id="a2" class="qw">Включить колпак</button>
-  <button type="button" onclick="sendData2(0)" style="display:none" id="a4" class="qe qw" >выключить колпак</button>
+  <div>
+    <button type="button" onclick="sendData(1)" id="turn_on" class="qw">Включить колпак</button>
+    <button type="button" onclick="sendData(0)" id="turn_off" style="display:none" class="qe qw" >выключить колпак</button>
   </div>
   </div>
+
+<h3 id="answer_serwer">ответа еще не поступало</h3>
   
   
   </div>
@@ -234,25 +237,24 @@ body {
 <script>
   
 
-function sendData2(led) {
-if (led == 0){
-    document.getElementById("a2").style.display = '';
-    document.getElementById("a4").style.display = 'none';
-  document.getElementById("f2").style.display = 'none';
+function sendData(led) {
+  if (led == 0){
+    document.getElementById("turn_on").style.display = '';
+    document.getElementById("turn_off").style.display = 'none';
+//    document.getElementById("f2").style.display = 'none';
   }
-else{
-    document.getElementById("a4").style.display = '';
-    document.getElementById("a2").style.display = 'none';
-  document.getElementById("f2").style.display = 'inline-block';
+  else{
+    document.getElementById("turn_off").style.display = '';
+    document.getElementById("turn_on").style.display = 'none';
+//    document.getElementById("f2").style.display = 'inline-block';
   }
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("LEDState1").innerHTML =
-      this.responseText;
+      document.getElementById("answer_serwer").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "setLED1?LEDstate1="+led, true);
+  xhttp.open("GET", "setLED?LEDstate="+led, true);
   xhttp.send();
 };
 
